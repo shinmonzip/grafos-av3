@@ -14,7 +14,7 @@ Repositório destinado ao armazenamento das submissões de exercícios e trabalh
 - **Plataforma:** [Kattis - Grid MST](https://open.kattis.com/problems/gridmst)
 - **Objetivo:** Encontrar o peso da Árvore Geradora Mínima (MST) para um conjunto de pontos num plano cartesiano, utilizando a **Distância de Manhattan**.
 
-- **Evidência de Aceitação:** ![Grid MST Accepted](evidencias/gridmst_accepted.png)
+- **Evidência de Aceitação:** ![Grid MST Accepted](src/gridmst/evidencias/gridmst_accepted.png)
 
 #### Como Executar
 Como a solução consome os dados da entrada padrão (`stdin`), você pode executar o script passando um arquivo de teste:
