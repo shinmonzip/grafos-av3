@@ -39,6 +39,7 @@ Para contornar isso e atingir a complexidade de $O(N \log N)$, a solução imple
 - **Plataforma:** [UVA Online Judge - 12144](https://onlinejudge.org/external/121/12144.pdf)
 - **Objetivo:** Encontrar o menor caminho entre uma origem (S) e um destino (D) descartando qualquer aresta que pertença a *algum* dos caminhos mínimos (Shortest Paths) originais.
 - **Evidência de Aceitação:** ![Almost Shortest Path Accepted](src/almost_shortest_path/evidencias/almost_shortest_path_accepted.png)
+- **Apresentação:** [Slides em PDF](src/almost_shortest_path/apresentacao/Almost_Shortest_Path_Strategy.pdf)
 
 #### Como Executar
 Você pode testar a solução utilizando o arquivo de entradas de exemplo gerado com base no PDF do problema:
