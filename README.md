@@ -58,3 +58,36 @@ Para solucionar o problema de forma eficiente e estruturada:
 - **Tempo:** O algoritmo de Dijkstra com fila de prioridade (Min-Heap) possui complexidade $O(E \log V)$. Como executamos o algoritmo 3 vezes (Ida, Volta, Caminho Final) e fazemos uma varredura linear nas $E$ arestas para filtrar o grafo, a complexidade total se mantém em $O(E \log V)$.
 - **Espaço:** A representação do grafo via lista de adjacências (`EdgeWeightedDigraph`) e as estruturas do Dijkstra (`distTo`, `edgeTo`, Min-Heap) ocupam espaço $O(V + E)$ na memória.
 
+---
+
+### 3. My T-shirt suits me (Fluxo Máximo)
+- **Arquivo:** `src/my_t_shirt_suits_me/main.py` *(em desenvolvimento)*
+- **Plataforma:** [UVA Online Judge — 11045](https://onlinejudge.org/external/110/11045.pdf)
+- **Linguagem:** Python
+- **Objetivo:** Dizer se Victor consegue dar 1 camiseta compatível para **cada** um dos $M$ voluntários. Há $N$ camisetas ($N$ múltiplo de 6), em quantidades iguais nos 6 tamanhos; cada voluntário aceita só 2 tamanhos.
+- **Atividade de Acompanhamento:** [roteiro.md](src/my_t_shirt_suits_me/acompanhamento/roteiro.md)
+- **Evidência de Aceitação:** *(pendente)*
+- **Apresentação:** *(pendente)*
+
+#### Como Executar
+```bash
+python3 src/my_t_shirt_suits_me/main.py < src/my_t_shirt_suits_me/dados/entradas_do_problema.txt
+```
+
+#### Detalhes da Implementação
+1. **Modelagem:** grafo em camadas `S → tamanhos → voluntários → T`.
+2. **Capacidades:** $N/6$ de `S` para cada tamanho; 1 de tamanho para voluntário (se compatível); 1 de voluntário para `T`.
+3. **Algoritmo:** Edmonds-Karp (BFS no grafo residual).
+4. **Resposta:** fluxo máximo $= M$ → `YES`; senão → `NO`.
+
+Execução manual passo a passo e desenho da rede: [roteiro de acompanhamento](src/my_t_shirt_suits_me/acompanhamento/roteiro.md).
+
+#### Análise de Complexidade
+- **Tempo:** $O(V \cdot E^2)$ — grafo pequeno ($M \leq 30$), suficiente para o juiz.
+- **Espaço:** $O(V + E)$ para o grafo com arestas residuais.
+
+#### Casos Especiais
+- Pode sobrar camiseta ($N > M$).
+- Se faltar estoque para vestir todo mundo → `NO` (ex.: 2º caso do PDF).
+- Vários casos de teste: montar a rede de novo a cada caso.
+
