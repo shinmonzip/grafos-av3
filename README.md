@@ -60,34 +60,47 @@ Para solucionar o problema de forma eficiente e estruturada:
 
 ---
 
-### 3. My T-shirt suits me (Fluxo Máximo)
-- **Arquivo:** `src/my_t_shirt_suits_me/main.py` *(em desenvolvimento)*
-- **Plataforma:** [UVA Online Judge — 11045](https://onlinejudge.org/external/110/11045.pdf)
-- **Linguagem:** Python
-- **Objetivo:** Dizer se Victor consegue dar 1 camiseta compatível para **cada** um dos $M$ voluntários. Há $N$ camisetas ($N$ múltiplo de 6), em quantidades iguais nos 6 tamanhos; cada voluntário aceita só 2 tamanhos.
-- **Atividade de Acompanhamento:** [roteiro.md](src/my_t_shirt_suits_me/acompanhamento/roteiro.md)
-- **Evidência de Aceitação:** *(pendente)*
+### 3. The Problem with the Problem Setter (Fluxo Máximo)
+- **Arquivo:** `src/problem_setter/main.py`
+- **Plataforma:** [UVA Online Judge — 10092](https://onlinejudge.org/external/100/10092.pdf)
+- **Objetivo:** Selecionar problemas de um pool para uma prova com $n_k$ categorias, cada uma exigindo uma quantidade fixa de questões. Cada problema pode pertencer a várias categorias, mas na prova entra em no máximo uma. Imprimir `1` e a alocação se for possível, ou `0` caso contrário.
+- **Atividade de Acompanhamento:** [roteiro.md](src/problem_setter/acompanhamento/roteiro.md)
+- **Evidência de Aceitação:** ![Problem Setter Accepted](src/problem_setter/evidencias/accepted.png)
 - **Apresentação:** *(pendente)*
 
 #### Como Executar
 ```bash
-python3 src/my_t_shirt_suits_me/main.py < src/my_t_shirt_suits_me/dados/entradas_do_problema.txt
+python3 src/problem_setter/main.py < src/problem_setter/dados/entradas_do_problema.txt
+```
+
+#### Estrutura do diretório
+```text
+src/problem_setter/
+├── acompanhamento/
+│   └── roteiro.md
+├── dados/
+│   └── entradas_do_problema.txt
+├── evidencias/
+│   └── accepted.png
+├── apresentacao/        (pendente)
+└── main.py
 ```
 
 #### Detalhes da Implementação
-1. **Modelagem:** grafo em camadas `S → tamanhos → voluntários → T`.
-2. **Capacidades:** $N/6$ de `S` para cada tamanho; 1 de tamanho para voluntário (se compatível); 1 de voluntário para `T`.
-3. **Algoritmo:** Edmonds-Karp (BFS no grafo residual).
-4. **Resposta:** fluxo máximo $= M$ → `YES`; senão → `NO`.
+1. **Modelagem:** rede em camadas `S → categorias → problemas → T`.
+2. **Capacidades:** demanda $d_i$ de `S` para categoria $i$; 1 de categoria para problema (se compatível); 1 de problema para `T`.
+3. **Algoritmo:** Edmonds-Karp com lista de adjacência e arestas residuais reversas.
+4. **Resposta:** fluxo máximo $= \sum d_i$ → `1` e lista de problemas por categoria (arestas categoria→problema com fluxo $> 0$); senão → `0`.
 
-Execução manual passo a passo e desenho da rede: [roteiro de acompanhamento](src/my_t_shirt_suits_me/acompanhamento/roteiro.md).
+Execução manual e desenho da rede: [roteiro de acompanhamento](src/problem_setter/acompanhamento/roteiro.md).
 
 #### Análise de Complexidade
-- **Tempo:** $O(V \cdot E^2)$ — grafo pequeno ($M \leq 30$), suficiente para o juiz.
+- **Tempo:** $O(V \cdot E^2)$ para Edmonds-Karp, com $V = n_k + n_p + 2$ e $E = O(n_k \cdot n_p)$ no pior caso.
 - **Espaço:** $O(V + E)$ para o grafo com arestas residuais.
 
 #### Casos Especiais
-- Pode sobrar camiseta ($N > M$).
-- Se faltar estoque para vestir todo mundo → `NO` (ex.: 2º caso do PDF).
-- Vários casos de teste: montar a rede de novo a cada caso.
+- Soma das demandas pode ser bem menor que $n_p$ — sobram problemas no pool.
+- Problema com uma única categoria possível funciona como aresta obrigatória se for escolhido.
+- Vários casos de teste na mesma entrada; termina com `0 0`.
+- Qualquer alocação válida é aceita pelo juiz (não precisa ser única).
 
