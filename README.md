@@ -66,7 +66,7 @@ Para solucionar o problema de forma eficiente e estruturada:
 - **Objetivo:** Selecionar problemas de um pool para uma prova com $n_k$ categorias, cada uma exigindo uma quantidade fixa de questões. Cada problema pode pertencer a várias categorias, mas na prova entra em no máximo uma. Imprimir `1` e a alocação se for possível, ou `0` caso contrário.
 - **Atividade de Acompanhamento:** [roteiro.md](src/problem_setter/acompanhamento/roteiro.md)
 - **Evidência de Aceitação:** ![Problem Setter Accepted](src/problem_setter/evidencias/accepted.png)
-- **Apresentação:** *(pendente)*
+- **Apresentação:** [apresentacao.pdf](src/problem_setter/apresentacao/apresentacao.pdf)
 
 #### Como Executar
 ```bash
@@ -82,7 +82,8 @@ src/problem_setter/
 │   └── entradas_do_problema.txt
 ├── evidencias/
 │   └── accepted.png
-├── apresentacao/        (pendente)
+├── apresentacao/
+│   └── apresentacao.pdf
 └── main.py
 ```
 
